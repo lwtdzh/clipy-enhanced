@@ -15,6 +15,7 @@ This is not an official Clipy release.
 - Shows a thumbnail preview when hovering an image item in the recent paste menu.
 - Stores unrecognized non-text pasteboard payloads as generic binary clipboard items.
 - Shows unknown binary history entries with titles such as `Binary Data on 15:04:03`.
+- Adds a per-folder `Show contents in menu` option for Snippets folders, so selected folders can display their snippets directly in the Snippets menu.
 - Removes official-update checking because this is an unofficial build.
 - Removes crash/error-reporting hooks and related preferences.
 

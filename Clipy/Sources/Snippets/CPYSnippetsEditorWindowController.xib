@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CPYSnippetsEditorWindowController" customModule="Clipy" customModuleProvider="target">
             <connections>
                 <outlet property="folderSettingView" destination="Ygf-rF-MiG" id="yje-y2-5Su"/>
+                <outlet property="folderShowsContentsInMenuButton" destination="mNc-tz-aeM" id="ECk-hG-Bx8"/>
                 <outlet property="folderShortcutRecordView" destination="zjO-0c-pwM" id="x7o-Yz-Zpe"/>
                 <outlet property="folderTitleTextField" destination="xGQ-1B-r34" id="mgO-58-c6u"/>
                 <outlet property="outlineView" destination="F5g-cX-Wqm" id="k1K-Pb-XxG"/>
@@ -332,7 +333,7 @@
                                                     </customView>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oW-cV-G3F">
                                                         <rect key="frame" x="-2" y="44" width="101" height="17"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Share snippets" id="wwo-lh-lMK">
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Menu display" id="wwo-lh-lMK">
                                                             <font key="font" metaFont="systemBold"/>
                                                             <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -346,30 +347,17 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </customView>
-                                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKH-Tu-3bF" customClass="CPYDesignableView" customModule="Clipy" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
-                                                        <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1c3-zO-hfE">
-                                                                <rect key="frame" x="30" y="9" width="190" height="17"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Comming Soon" id="yzF-k8-xUT">
-                                                                    <font key="font" metaFont="systemBold"/>
-                                                                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                        </subviews>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="17"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </customView>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNc-tz-aeM">
+                                                        <rect key="frame" x="0.0" y="6" width="250" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Show contents in menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="g1q-mj-FIU">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="showFolderContentsInMenuButtonTapped:" target="-2" id="SOj-wj-LNr"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="208" id="R69-Jz-HW3"/>

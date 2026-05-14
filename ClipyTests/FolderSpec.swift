@@ -17,6 +17,7 @@ class FolderSpec: QuickSpec {
                 // Save Value
                 let savedFolder = CPYFolder()
                 savedFolder.index = 100
+                savedFolder.showsContentsInMenu = true
                 savedFolder.title = "saved realm folder"
 
                 let savedSnippet = CPYSnippet()
@@ -37,6 +38,7 @@ class FolderSpec: QuickSpec {
                 expect(folder.realm).to(beNil())
                 expect(folder.index) == savedFolder.index
                 expect(folder.enable) == savedFolder.enable
+                expect(folder.showsContentsInMenu) == savedFolder.showsContentsInMenu
                 expect(folder.title) == savedFolder.title
                 expect(folder.identifier) == savedFolder.identifier
                 expect(folder.snippets.count) == 1
@@ -146,6 +148,7 @@ class FolderSpec: QuickSpec {
                 folder.index = 100
                 folder.title = "title"
                 folder.enable = false
+                folder.showsContentsInMenu = true
                 folder.merge()
                 expect(folder.realm).to(beNil())
                 expect(realm.objects(CPYFolder.self).count) == 1
@@ -155,16 +158,19 @@ class FolderSpec: QuickSpec {
                 expect(savedFolder?.index) == folder.index
                 expect(savedFolder?.title) == folder.title
                 expect(savedFolder?.enable) == folder.enable
+                expect(savedFolder?.showsContentsInMenu) == folder.showsContentsInMenu
 
                 folder.index = 1
                 folder.title = "change title"
                 folder.enable = true
+                folder.showsContentsInMenu = false
                 folder.merge()
                 expect(realm.objects(CPYFolder.self).count) == 1
 
                 expect(savedFolder?.index) == folder.index
                 expect(savedFolder?.title) == folder.title
                 expect(savedFolder?.enable) == folder.enable
+                expect(savedFolder?.showsContentsInMenu) == folder.showsContentsInMenu
             }
 
             it("Remove folder") {

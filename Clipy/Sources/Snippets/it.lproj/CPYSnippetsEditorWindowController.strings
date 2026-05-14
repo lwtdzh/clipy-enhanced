@@ -26,11 +26,11 @@
 /* Class = "NSTextFieldCell"; title = "folder title"; ObjectID = "rI9-rT-YTs"; */
 "rI9-rT-YTs.title" = "Nome della cartella";
 
-/* Class = "NSTextFieldCell"; title = "Share snippets"; ObjectID = "wwo-lh-lMK"; */
-"wwo-lh-lMK.title" = "Condividi Snippet";
+/* Class = "NSTextFieldCell"; title = "Menu display"; ObjectID = "wwo-lh-lMK"; */
+"wwo-lh-lMK.title" = "Visualizzazione menu";
 
 /* Class = "NSTextFieldCell"; title = "Add Snippet"; ObjectID = "xPC-Uv-z03"; */
 "xPC-Uv-z03.title" = "Aggiungi Snippet";
 
-/* Class = "NSTextFieldCell"; title = "Coming Soon"; ObjectID = "yzF-k8-xUT"; */
-"yzF-k8-xUT.title" = "Disponibile a breve";
+/* Class = "NSButtonCell"; title = "Show contents in menu"; ObjectID = "g1q-mj-FIU"; */
+"g1q-mj-FIU.title" = "Mostra contenuti nel menu";

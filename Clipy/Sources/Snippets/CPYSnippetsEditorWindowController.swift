@@ -28,6 +28,7 @@ final class CPYSnippetsEditorWindowController: NSWindowController {
             folderShortcutRecordView.delegate = self
         }
     }
+    @IBOutlet private weak var folderShowsContentsInMenuButton: NSButton!
     @IBOutlet private var textView: CPYPlaceHolderTextView! {
         didSet {
             textView.font = NSFont.systemFont(ofSize: 14)
@@ -155,6 +156,15 @@ extension CPYSnippetsEditorWindowController {
         changeItemFocus()
     }
 
+    @IBAction private func showFolderContentsInMenuButtonTapped(_ sender: NSButton) {
+        guard let folder = outlineView.item(atRow: outlineView.selectedRow) as? CPYFolder else {
+            NSSound.beep()
+            return
+        }
+        folder.showsContentsInMenu = sender.state == .on
+        folder.merge()
+    }
+
     @IBAction private func importSnippetButtonTapped(_ sender: AnyObject) {
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = false
@@ -264,18 +274,21 @@ private extension CPYSnippetsEditorWindowController {
             textView.isHidden = true
             folderShortcutRecordView.keyCombo = nil
             folderTitleTextField.stringValue = ""
+            folderShowsContentsInMenuButton.state = .off
             return
         }
         if let folder = item as? CPYFolder {
             textView.string = ""
             folderTitleTextField.stringValue = folder.title
             folderShortcutRecordView.keyCombo = AppEnvironment.current.hotKeyService.snippetKeyCombo(forIdentifier: folder.identifier)
+            folderShowsContentsInMenuButton.state = folder.showsContentsInMenu ? .on : .off
             folderSettingView.isHidden = false
             textView.isHidden = true
         } else if let snippet = item as? CPYSnippet {
             textView.string = snippet.content
             folderTitleTextField.stringValue = ""
             folderShortcutRecordView.keyCombo = nil
+            folderShowsContentsInMenuButton.state = .off
             folderSettingView.isHidden = true
             textView.isHidden = false
         }

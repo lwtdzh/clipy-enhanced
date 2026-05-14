@@ -235,6 +235,13 @@ private extension MenuManager {
         return subMenuItem
     }
 
+    func makeFolderHeaderMenuItem(_ title: String) -> NSMenuItem {
+        let menuItem = NSMenuItem(title: trimTitle(title), action: nil)
+        menuItem.isEnabled = false
+        menuItem.image = (AppEnvironment.current.defaults.bool(forKey: Constants.UserDefaults.showIconInTheMenu)) ? folderIcon : nil
+        return menuItem
+    }
+
     func incrementListNumber(_ listNumber: NSInteger, max: NSInteger, start: NSInteger) -> NSInteger {
         var listNumber = listNumber + 1
         if listNumber == max && max == 10 && start == 1 {
@@ -407,27 +414,31 @@ private extension MenuManager {
         labelItem.isEnabled = false
         menu.addItem(labelItem)
 
-        var subMenuIndex = menu.numberOfItems - 1
         let firstIndex = firstIndexOfMenuItems()
 
         folderResults
             .filter { $0.enable }
             .forEach { folder in
-                let folderTitle = folder.title
-                let subMenuItem = makeSubmenuItem(folderTitle)
-                menu.addItem(subMenuItem)
-                subMenuIndex += 1
-
                 var i = firstIndex
-                folder.snippets
+                let snippets = folder.snippets
                     .sorted(byKeyPath: #keyPath(CPYSnippet.index), ascending: true)
                     .filter { $0.enable }
+
+                if folder.showsContentsInMenu {
+                    menu.addItem(makeFolderHeaderMenuItem(folder.title))
+                    snippets.forEach { snippet in
+                        menu.addItem(makeSnippetMenuItem(snippet, listNumber: i))
+                        i += 1
+                    }
+                    return
+                }
+
+                let subMenuItem = makeSubmenuItem(folder.title)
+                menu.addItem(subMenuItem)
+                snippets
                     .forEach { snippet in
-                        let subMenuItem = makeSnippetMenuItem(snippet, listNumber: i)
-                        if let subMenu = menu.item(at: subMenuIndex)?.submenu {
-                            subMenu.addItem(subMenuItem)
-                            i += 1
-                        }
+                        subMenuItem.submenu?.addItem(makeSnippetMenuItem(snippet, listNumber: i))
+                        i += 1
                     }
             }
     }

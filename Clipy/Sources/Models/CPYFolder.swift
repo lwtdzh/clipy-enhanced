@@ -18,6 +18,7 @@ final class CPYFolder: Object {
     // MARK: - Properties
     @objc dynamic var index = 0
     @objc dynamic var enable = true
+    @objc dynamic var showsContentsInMenu = false
     @objc dynamic var title = ""
     @objc dynamic var identifier = UUID().uuidString
     let snippets = List<CPYSnippet>()
@@ -102,6 +103,7 @@ extension CPYFolder {
             folder.realm?.transaction {
                 folder.index = index
                 folder.enable = enable
+                folder.showsContentsInMenu = showsContentsInMenu
                 folder.title = title
             }
         } else {
